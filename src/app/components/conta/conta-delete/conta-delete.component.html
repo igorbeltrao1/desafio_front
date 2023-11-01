@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-title> Excluir Conta </mat-card-title> 
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Nome"
+             [value]="conta.nomeTitular" name="nomeTitular" disabled>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Saldo" 
+            [value]="conta.saldoConta" name="saldoConta" disabled>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Conta" 
+            [value]="conta.numeroConta" name="numeroConta" disabled>
+        </mat-form-field>
+     </form>
+
+<button mat-raised-button (click)="deleteConta()"  color="warn"> 
+        Excluir
+</button>
+
+<button mat-raised-button (click)="cancel()">
+    Cancelar 
+</button>
+</mat-card>
+

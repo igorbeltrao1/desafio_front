@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-title> Nova Conta</mat-card-title> 
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Nome do titular"
+             [(ngModel)]="conta.nomeTitular" name="nomeTitular">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Numero da conta" 
+            [(ngModel)]="conta.numeroConta" name="numeroConta">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Saldo inicial" 
+            [(ngModel)]="conta.saldoConta" name="saldoConta">
+        </mat-form-field>
+     </form>
+
+<button mat-raised-button (click)="createConta()"> 
+   Criar conta
+</button>
+
+<button mat-raised-button (click)="cancel()">
+    Cancelar 
+</button>
+</mat-card>
