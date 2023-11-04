@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Conta } from './conta-create/conta.model';
-import { EMPTY, Observable, catchError, map } from 'rxjs';
+import { EMPTY, Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +26,9 @@ create(conta: Conta): Observable<Conta>{
   catchError(e => this.errorHandler(e)));
 
 }
-errorHandler(e: any): Observable<any>{
-  this.showMessage('Ocorreu um erro!', true)
-  return EMPTY
+errorHandler(e: any): Observable<never> {
+  this.showMessage('Ocorreu um erro!', true);
+  return throwError(e);
 }
 read(): Observable<Conta[]>{
 
@@ -40,8 +40,18 @@ readById(id: number): Observable<Conta>{
   return this.http.get<Conta>(url);
 }
 
-delete(id: number): Observable<Conta>{
+delete(id: number): Observable<Conta> {
   const url = `${this.baseUrl}/${id}`;
-  return this.http.delete<Conta>(url);
+  return this.http.delete<Conta>(url).pipe(
+    catchError((e) => {
+      this.showMessage('Ocorreu um erro na exclusão', true);
+      return throwError(e);
+    })
+  );
+}
+update(conta: Conta): Observable<Conta>{
+  const url = `${this.baseUrl}/${conta.id}`;
+  return this.http.put<Conta>(url, conta);
+
 }
 }

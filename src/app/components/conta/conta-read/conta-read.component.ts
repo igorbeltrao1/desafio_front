@@ -1,6 +1,8 @@
 import { ContaService } from './../conta.service';
 import { Conta } from './../conta-create/conta.model';
 import { Component, OnInit } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+
 
 @Component({
   selector: 'app-conta-read',
@@ -20,6 +22,10 @@ export class ContaReadComponent implements OnInit {
       console.log(contas)
     })
       
+  }
+
+   deleteProduto(){
+      console.log()
   }
 
 }

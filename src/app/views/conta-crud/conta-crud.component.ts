@@ -19,7 +19,7 @@ export class ContaCrudComponent implements OnInit {
     this.router.navigate(['/contas/read'])
   }
   navigateToContaUpdate(): void {
-    this.router.navigate(['/contas/update'])
+    this.router.navigate(['/contas/update/:id'])
   }
   navigateToContaDelete(): void {
     this.router.navigate(['/contas/delete/:id'])
