@@ -24,6 +24,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { ContaDeleteComponent } from './components/conta/conta-delete/conta-delete.component';
 import { ContaUpdateComponent } from './components/conta/conta-update/conta-update.component';
 import { CommonModule } from '@angular/common';
+import { TransacoesCreateComponent } from './components/transacoes/transacoes-create/transacoes-create.component';
+import {MatInputModule} from  '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -37,6 +40,8 @@ import { CommonModule } from '@angular/common';
     ContaCrudComponent,
     ContaDeleteComponent,
     ContaUpdateComponent,
+    TransacoesCreateComponent,
+    
   
   ],
   imports: [
@@ -54,7 +59,9 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     MatButtonModule,
     HttpClientModule, 
-    CommonModule
+    CommonModule,
+    MatInputModule,
+    MatSortModule
     
 
   ],

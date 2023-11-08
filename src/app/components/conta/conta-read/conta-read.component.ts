@@ -1,6 +1,6 @@
 import { ContaService } from './../conta.service';
 import { Conta } from './../conta-create/conta.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 
 
@@ -23,9 +23,6 @@ export class ContaReadComponent implements OnInit {
     })
       
   }
-
-   deleteProduto(){
-      console.log()
-  }
+  
 
 }

@@ -10,6 +10,7 @@ import { EMPTY, Observable, catchError, map, throwError } from 'rxjs';
 export class ContaService {
 
   baseUrl = "http://localhost:8080/contas"
+  baseUrlDelete = "http://localhost:8080/contas/delete"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -30,18 +31,22 @@ errorHandler(e: any): Observable<never> {
   this.showMessage('Ocorreu um erro!', true);
   return throwError(e);
 }
+Longread(): Observable<Conta[]>{
+  return this.http.get<Conta[]>(this.baseUrl)
+
+}
 read(): Observable<Conta[]>{
 
   return this.http.get<Conta[]>(this.baseUrl);
 }
 
 readById(id: number): Observable<Conta>{
-  const url = `${this.baseUrl}/${id}`;
+   const url = `${this.baseUrl}/${id}`;
   return this.http.get<Conta>(url);
 }
 
 delete(id: number): Observable<Conta> {
-  const url = `${this.baseUrl}/${id}`;
+  const url = `${this.baseUrlDelete}${id}`;
   return this.http.delete<Conta>(url).pipe(
     catchError((e) => {
       this.showMessage('Ocorreu um erro na exclusão', true);
@@ -51,7 +56,7 @@ delete(id: number): Observable<Conta> {
 }
 update(conta: Conta): Observable<Conta>{
   const url = `${this.baseUrl}/${conta.id}`;
-  return this.http.put<Conta>(url, conta);
+ return this.http.put<Conta>(url, conta);
 
 }
 }
