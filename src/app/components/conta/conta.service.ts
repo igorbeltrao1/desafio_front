@@ -11,6 +11,7 @@ export class ContaService {
 
   baseUrl = "http://localhost:8080/contas"
   baseUrlDelete = "http://localhost:8080/contas/delete"
+  baseUrlUpdate = "http://localhost:8080/contas/update"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -46,7 +47,7 @@ readById(id: number): Observable<Conta>{
 }
 
 delete(id: number): Observable<Conta> {
-  const url = `${this.baseUrlDelete}${id}`;
+  const url = `${this.baseUrlDelete}/${id}`;
   return this.http.delete<Conta>(url).pipe(
     catchError((e) => {
       this.showMessage('Ocorreu um erro na exclusão', true);
@@ -55,7 +56,7 @@ delete(id: number): Observable<Conta> {
   );
 }
 update(conta: Conta): Observable<Conta>{
-  const url = `${this.baseUrl}/${conta.id}`;
+  const url = `${this.baseUrlUpdate}/${conta.id}`;
  return this.http.put<Conta>(url, conta);
 
 }

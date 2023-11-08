@@ -11,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class ContaDeleteComponent implements OnInit {
   conta!: Conta;
 
+  id!: number;
+
   constructor(private contaService: ContaService, 
     private router: Router,
     private route: ActivatedRoute){}
@@ -18,12 +20,18 @@ export class ContaDeleteComponent implements OnInit {
 
 
   ngOnInit(): void {
-      const id = this.route.snapshot.paramMap.get('id') as string;
-      const idNumber = parseInt(id, 10);
+     this.id = Number(this.route.snapshot.params['id'] )
+      
 
-      this.contaService.readById(idNumber).subscribe(conta => {
+      this.contaService.readById(this.id).subscribe(conta => {
         this.conta = conta;
-      })
+        console.log(conta);
+      }, (error) => {
+        console.log(error.error.mensagem);
+        
+        this.contaService.showMessage(error.error.mensagem)
+      }
+      )
   }
   deleteConta(): void {
   if(this.conta && this.conta.id) { 
